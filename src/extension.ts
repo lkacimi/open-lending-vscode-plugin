@@ -16,7 +16,10 @@ export function activate(context: vscode.ExtensionContext) {
 	const disposable = vscode.commands.registerCommand('github-actions-generator.helloWorld', () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from github-actions-generator!');
+
+		const pluginConfig = vscode.workspace.getConfiguration('github-actions-generator');
+	
+		vscode.window.showInformationMessage('Hello World from github-actions-generator! ' + pluginConfig.get('configurationPath')); ;
 	});
 
 	context.subscriptions.push(disposable);

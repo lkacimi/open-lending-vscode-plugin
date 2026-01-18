@@ -17,7 +17,33 @@
         "command": "github-actions-generator.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "GitHub Actions Generator Configuration",
+      "properties": {
+        "github-actions-generator.repository": {
+          "type": "string",
+          "default": "",
+          "description": "The GitHub repository where the action will create the PR."
+        },
+        "github-actions-generator.token": {
+          "type": "string",
+          "default": "",
+          "description": "The GitHub token used to authenticate the action."
+        },
+        "github-actions-generator.configurationPath": {
+          "type": "string",
+          "default": "",
+          "description": "The path to the configuration file."
+        },
+        "github-actions-generator.configurationVariable": {
+          "type": "string",
+          "default": "",
+          "description": "The variable name within the configuration file."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
@@ -34,15 +60,18 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.108.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "22.x",
-    "typescript-eslint": "^8.52.0",
-    "eslint": "^9.39.2",
+    "@types/vscode": "^1.108.1",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
     "esbuild": "^0.27.2",
+    "eslint": "^9.39.2",
     "npm-run-all": "^4.1.5",
     "typescript": "^5.9.3",
-    "@vscode/test-cli": "^0.0.12",
-    "@vscode/test-electron": "^2.5.2"
+    "typescript-eslint": "^8.52.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.2"
   }
 }

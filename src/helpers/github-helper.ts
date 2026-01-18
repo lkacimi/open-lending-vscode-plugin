@@ -34,9 +34,7 @@ export default class GithubHelper {
 
         } catch (error) {
             console.error('Error fetching commits:', error);
-        }
-       
+            throw error;
+        }  
     }
-    
-
 }

@@ -3,7 +3,6 @@ import * as sinon from 'sinon';
 import GitHelper from '../helpers/git-helper';
 import { beforeEach, afterEach } from 'mocha';
 
-
 suite('Git Test Suite', () => {
 
     let staticGitHelperStub: sinon.SinonStub;

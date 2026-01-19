@@ -22,7 +22,7 @@ export default class GitHelper {
         return config.value || 'lkacimi@gmail.com';
     }
 
-    static async createBranchCommitAndPush() : string {
+    static async createBranchCommitAndPush() : Promise<string> {
 
         const pathToLocalRepository = vscode.workspace.getConfiguration('github-actions-generator').get('pathToLocalRepository') as string
         const git = simpleGit(pathToLocalRepository);
@@ -30,11 +30,10 @@ export default class GitHelper {
         const fileName = vscode.workspace.getConfiguration('github-actions-generator').get('configurationPath') as string;
         const filePath = path.join(pathToLocalRepository, fileName).replace(/\\/g, '/');
         const fileContent =  fs.readFileSync(filePath, { encoding: 'utf-8' });
-        console.log('File content before update:', fileContent);
         const config: Config = YAML.parse(fileContent);
         config.replicas = config.replicas + 1;
         const updatedYamlContent = YAML.stringify(config);
-        const commitMessage = `Increments the number of ${vscode.workspace.getConfiguration('github-actions-generator').get('variablesName')} in the configuration file.`;
+        const commitMessage = `Increments the number of ${vscode.workspace.getConfiguration('github-actions-generator').get('configurationVariable')} in the configuration file.`;
         
         try {
             await git.checkoutLocalBranch(branchName);
@@ -44,10 +43,12 @@ export default class GitHelper {
             await git.add(filePath);
             await git.commit(commitMessage);
             await git.push('origin', branchName, ['--set-upstream']);
+
             return branchName;
 
         } catch (err) {
             console.error('An error occurred during the Git workflow:', err);
+            throw err;
         }
     }
 }

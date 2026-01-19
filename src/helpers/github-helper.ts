@@ -111,6 +111,10 @@ export default class GithubHelper {
         }
     }
 
+    /**
+     * Pushes a new workflow file to the repository
+     * @param workflowFileName Workflow name.
+     */
     async addWorkflowToRepository(workflowFileName: string) {
         try {
              const username = await GitHelper.getUsername();

@@ -32,10 +32,10 @@
           "default": "",
           "description": "The GitHub token used to authenticate the action."
         },
-         "github-actions-generator.openApiKey": {
+        "github-actions-generator.openAIKey": {
           "type": "string",
           "default": "",
-          "description": "The Open API Key used to request a code review."
+          "description": "The Open AI Key used to request a code review."
         },
         "github-actions-generator.configurationPath": {
           "type": "string",
@@ -46,6 +46,11 @@
           "type": "string",
           "default": "",
           "description": "The variable name within the configuration file."
+        },
+        "github-actions-generator.pathToLocalRepository": {
+          "type": "string",
+          "default": "",
+          "description": "The path to the local repository."
         }
       }
     }
@@ -80,6 +85,7 @@
   },
   "dependencies": {
     "libsodium-wrappers": "^0.8.1",
-    "simple-git": "^3.30.0"
+    "simple-git": "^3.30.0",
+    "yaml": "^2.8.2"
   }
 }

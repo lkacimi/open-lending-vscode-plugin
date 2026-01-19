@@ -44,6 +44,8 @@ export default class GitHelper {
             await git.commit(commitMessage);
             await git.push('origin', branchName, ['--set-upstream']);
 
+            await git.checkout('main');
+
             return branchName;
 
         } catch (err) {

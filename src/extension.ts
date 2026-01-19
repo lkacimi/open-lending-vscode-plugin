@@ -11,7 +11,12 @@ export async function activate(context: vscode.ExtensionContext) {
 		const githubHelper = new GithubHelper();
 		const openApiKey = vscode.workspace.getConfiguration('github-actions-generator').get('openApiKey');
 		await githubHelper.createSecret('OPENAI_API_KEY', openApiKey as string);
-		await githubHelper.addWorkflowToRepository('open-ai-reviewer.yml');
+		try{
+			await githubHelper.addWorkflowToRepository('open-ai-reviewer.yml');
+		} catch (error) {
+			console.error('Error adding workflow to repository:', error);
+		}
+		
 		vscode.window.showInformationMessage('Hello World from github-actions-generator!');
 	});
 

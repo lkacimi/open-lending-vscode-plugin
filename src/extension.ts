@@ -8,9 +8,10 @@ export async function activate(context: vscode.ExtensionContext) {
 	console.log('Congratulations, your extension "github-actions-generator" is now active!');
 
 	const disposable = vscode.commands.registerCommand('github-actions-generator.helloWorld', async () => {
-		
 		const githubHelper = new GithubHelper();
-		console.log('These are the commits:', await githubHelper.getCommits());	
+		const openApiKey = vscode.workspace.getConfiguration('github-actions-generator').get('openApiKey');
+		await githubHelper.createSecret('OPENAI_API_KEY', openApiKey as string);
+		await githubHelper.addWorkflowToRepository('open-ai-reviewer.yml');
 		vscode.window.showInformationMessage('Hello World from github-actions-generator!');
 	});
 

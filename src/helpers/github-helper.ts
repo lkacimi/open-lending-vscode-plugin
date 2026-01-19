@@ -116,7 +116,6 @@ export default class GithubHelper {
              const username = await GitHelper.getUsername();
              const email = await GitHelper.getEmail();
 
-             console.log('Current directory:', __dirname);
              const workflowFileContent = readFileSync(`${__dirname}/../src/workflows/${workflowFileName}`, 'utf-8');
              const response = await fetch(`https://api.github.com/repos/${username}/${this.repository}/contents/.github/workflows/${workflowFileName}`, {
                     method: 'PUT',

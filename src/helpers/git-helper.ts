@@ -24,7 +24,7 @@ export default class GitHelper {
 
     static async createBranchCommitAndPush() : Promise<string> {
 
-        const pathToLocalRepository = vscode.workspace.getConfiguration('github-actions-generator').get('pathToLocalRepository') as string
+        const pathToLocalRepository = vscode.workspace.getConfiguration('github-actions-generator').get('pathToLocalRepository') as string;
         const git = simpleGit(pathToLocalRepository);
         const branchName = `feature/increment-replicas-${Math.floor(Date.now() / 1000)}`;
         const fileName = vscode.workspace.getConfiguration('github-actions-generator').get('configurationPath') as string;

@@ -146,4 +146,41 @@ export default class GithubHelper {
         }
     }
 
+    /**
+     * Method to create a GitHub Pull Request.
+     * @param branchName: the branch name where the changes were pushed. 
+     * @param title: PR title 
+     * @param body: PR description 
+     * @returns 
+     */
+    async createPullRequest(branchName: string, title: string, body: string): Promise<any> {
+        try {
+            const username = await GitHelper.getUsername();
+            const response = await fetch(`https://api.github.com/repos/${username}/${this.repository}/pulls`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${this.token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                        'X-GitHub-Api-Version': '2022-11-28'
+                    },
+                    body: JSON.stringify({
+                        'owner': username,
+                        'repo': this.repository,
+                        'title': title,
+                        'head': branchName,
+                        'base': 'main',
+                        'body': body
+                    })
+                });
+            if (!response.ok) {
+                throw new Error(`Error creating pull request: ${response.statusText}`);
+            } else {
+                 return response.json();
+            }
+        } catch (error) {
+            console.error('Error creating pull request:', error);
+            throw error;
+        }
+    }
+
 }

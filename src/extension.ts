@@ -18,8 +18,16 @@ export async function activate(context: vscode.ExtensionContext) {
 			console.error('Error adding workflow to repository:', error);
 		}
 
-		GitHelper.createBranchCommitAndPush();
-		
+		const branchName = await GitHelper.createBranchCommitAndPush();
+		const pullRequestResponse = await githubHelper.createPullRequest(
+			branchName as string,
+			'Increments the count of replicas by 1',
+			'This PR increments the count of replicas in the configuration file.'
+		);
+
+		const url = vscode.Uri.parse(pullRequestResponse.html_url);
+		vscode.env.openExternal(url);
+
 		vscode.window.showInformationMessage('Hello World from github-actions-generator!');
 	});
 

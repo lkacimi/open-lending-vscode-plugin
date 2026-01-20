@@ -28,7 +28,7 @@ export async function activate(context: vscode.ExtensionContext) {
 		const url = vscode.Uri.parse(pullRequestResponse.html_url);
 		vscode.env.openExternal(url);
 
-		vscode.window.showInformationMessage('Hello World from github-actions-generator!');
+		vscode.window.showInformationMessage('GitHub Pull Request created from github-actions-generator!');
 	});
 
 	context.subscriptions.push(disposable);

@@ -14,8 +14,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "github-actions-generator.helloWorld",
-        "title": "Hello World"
+        "command": "github-actions-generator.createPullRequestToChangeVariable",
+        "title": "Create Pull Request to Increment a Variable in a YAML configuration file"
       }
     ],
     "configuration": {

@@ -8,7 +8,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 	console.log('Congratulations, your extension "github-actions-generator" is now active!');
 
-	const disposable = vscode.commands.registerCommand('github-actions-generator.helloWorld', async () => {
+	const disposable = vscode.commands.registerCommand('github-actions-generator.createPullRequestToChangeVariable', async () => {
 		const githubHelper = new GithubHelper();
 		const openAIKey = vscode.workspace.getConfiguration('github-actions-generator').get('openAIKey');
 		await githubHelper.createSecret('OPENAI_API_KEY', openAIKey as string);

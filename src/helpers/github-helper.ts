@@ -4,7 +4,7 @@ import GitHelper from './git-helper';
 import EncryptionHelper from './encryption-helper';
 
 
-type PublicKey ={
+type PublicKey = {
     key_id: string;
     key: string;
 }

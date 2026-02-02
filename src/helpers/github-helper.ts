@@ -15,6 +15,7 @@ export default class GithubHelper {
     repository: string | undefined;
     token: string | undefined;
     username: string | undefined;
+    
 
     constructor() {
         const pluginConfig = vscode.workspace.getConfiguration('github-actions-generator');
